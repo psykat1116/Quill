@@ -16,6 +16,15 @@ import {
 import ToolbarButton from "./ToolbarButton";
 import { useEditorStore } from "@/store/useEditorStore";
 import { Separator } from "./ui/separator";
+import FontFamily from "./tools/FontFamily";
+import Heading from "./tools/Heading";
+import TextColor from "./tools/TextColor";
+import HighlightColor from "./tools/HighlightColor";
+import Anchor from "./tools/Anchor";
+import Photo from "./tools/Photo";
+import Align from "./tools/Align";
+import List from "./tools/List";
+import FontSize from "./tools/FontSize";
 
 const Toolbar = () => {
   const { editor } = useEditorStore();
@@ -126,23 +135,23 @@ const Toolbar = () => {
         <ToolbarButton key={item.label} {...item} />
       ))}
       <Separator orientation="vertical" className="h-6 bg-neutral-300" />
-      {/* Font Family */}
+      <FontFamily />
       <Separator orientation="vertical" className="h-6 bg-neutral-300" />
-      {/* Heading*/}
+      <Heading />
       <Separator orientation="vertical" className="h-6 bg-neutral-300" />
-      {/* Font Size */}
+      <FontSize />
       <Separator orientation="vertical" className="h-6 bg-neutral-300" />
       {sections[1].map((item) => (
         <ToolbarButton key={item.label} {...item} />
       ))}
-      {/** TEXT COLOR */}
-      {/** HIGHLIGHT */}
+      <TextColor />
+      <HighlightColor />
       <Separator orientation="vertical" className="h-6 bg-neutral-300" />
-      {/** LINK */}
-      {/** IMAGE */}
-      {/** Align */}
+      <Anchor />
+      <Photo />
+      <Align />
       {/** Line Height */}
-      {/** List */}
+      <List />
       <Separator orientation="vertical" className="h-6 bg-neutral-300" />
       {sections[2].map((item) => (
         <ToolbarButton key={item.label} {...item} />
