@@ -13,7 +13,7 @@ import {
   Underline,
   Undo2,
 } from "lucide-react";
-import ToolbarButton from "./ToolbarButton";
+import ToolbarButton from "./tools/ToolbarButton";
 import { useEditorStore } from "@/store/useEditorStore";
 import { Separator } from "./ui/separator";
 import FontFamily from "./tools/FontFamily";
@@ -25,9 +25,11 @@ import Photo from "./tools/Photo";
 import Align from "./tools/Align";
 import List from "./tools/List";
 import FontSize from "./tools/FontSize";
+import LineHeight from "./tools/LineHeight";
 
 const Toolbar = () => {
   const { editor } = useEditorStore();
+
   const sections: {
     label: string;
     icon: LucideIcon;
@@ -150,7 +152,7 @@ const Toolbar = () => {
       <Anchor />
       <Photo />
       <Align />
-      {/** Line Height */}
+      <LineHeight />
       <List />
       <Separator orientation="vertical" className="h-6 bg-neutral-300" />
       {sections[2].map((item) => (

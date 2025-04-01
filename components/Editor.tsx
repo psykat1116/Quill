@@ -19,6 +19,8 @@ import Link from "@tiptap/extension-link";
 import TextAlign from "@tiptap/extension-text-align";
 
 import { FontSizeExtension } from "./extension/font-size";
+import { LineHeightExtension } from "./extension/line-height";
+import Ruler from "./Ruler";
 
 const Editor = () => {
   const { setEditor } = useEditorStore();
@@ -65,6 +67,10 @@ const Editor = () => {
       TableHeader,
       ImageResize,
       FontSizeExtension,
+      LineHeightExtension.configure({
+        types: ["heading", "paragraph"],
+        defaultLineHeight: "normal",
+      }),
       TaskItem.configure({ nested: true }),
       Highlight.configure({
         multicolor: true,
@@ -85,10 +91,12 @@ const Editor = () => {
         style: "padding-left: 56px; padding-right: 56px;",
       },
     },
+    immediatelyRender: false,
   });
 
   return (
     <div className="size-full overflow-x-auto bg-[#f9fbfd] px-4 print:p-0 print:bg-white print:overflow-visible">
+      <Ruler />
       <div className="min-w-max justify-center w-[816px] py-4 print:py-0 mx-auto print:w-full print:min-w-0">
         <EditorContent editor={editor} />
       </div>

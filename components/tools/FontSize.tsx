@@ -40,7 +40,7 @@ const FontSize = () => {
 
   const decrement = () => {
     const newSize = parseInt(fontSize) - 1;
-    if (newSize > 8) {
+    if (newSize > 10) {
       updateFontSize(newSize.toString());
       // TODO: Show Toast Message
     }
