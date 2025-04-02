@@ -6,7 +6,7 @@ import { useSearch } from "@/hook/useSearch";
 import { Search, X } from "lucide-react";
 
 const SearchInput = () => {
-  const [search, setSearch] = useSearch("search");
+  const [_, setSearch] = useSearch("search");
   const [value, setValue] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -27,12 +27,12 @@ const SearchInput = () => {
         <Input
           ref={inputRef}
           placeholder="Search..."
-          className="md:text-base placeholder:text-neutral-800 px-14 w-full border-none focus-visible:shadow-[0_1px_1px_0_rgba(65,69,73,.3),0_1px_3px_1px_rgba(65,69,73,.15)] bg-[#f0f4f8] rounded-full h-[48px] focus-visible:ring-0 focus:bg-white"
+          className="placeholder:text-neutral-800 px-11 w-full border-none bg-[#f0f4f8] rounded-full h-[40px] focus-visible:ring-0 "
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
         <Button
-          className="absolute left-3 top-1/2 -translate-y-1/2 [&_svg]:size-5 rounded-full"
+          className="absolute left-2 top-[51%] -translate-y-1/2 [&_svg]:size-4 rounded-full"
           type="submit"
           size="icon"
           variant="ghost"

@@ -1,8 +1,9 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import { ClerkProvider } from "@clerk/nextjs";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { ConvexClientProvider } from "@/store/ConvexClientProvider";
+import { Toaster } from "sonner";
 
 const poppins = Poppins({
   subsets: ["latin", "latin-ext"],
@@ -23,12 +24,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-      <NuqsAdapter>
-        <html lang="en">
-          <body className={`${poppins.className} antialiased`}>{children}</body>
-        </html>
-      </NuqsAdapter>
-    </ClerkProvider>
+    <html lang="en">
+      <body className={`${poppins.className} antialiased`}>
+        <ConvexClientProvider>
+          <NuqsAdapter>
+            <Toaster duration={7000} closeButton />
+            {children}
+          </NuqsAdapter>
+        </ConvexClientProvider>
+      </body>
+    </html>
   );
 }

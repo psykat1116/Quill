@@ -10,12 +10,35 @@ import {
 } from "@/components/ui/carousel";
 
 import { templates } from "@/constant";
+import { useRouter } from "next/navigation";
+import { useMutation } from "convex/react";
+import { api } from "@/convex/_generated/api";
+import { useState } from "react";
+import { toast } from "sonner";
 
 const TemplateGallery = () => {
-  const isCreating = false; // TODO: Change Later
+  const router = useRouter();
+  const create = useMutation(api.documents.create);
+  const [isCreating, setIsCreating] = useState(false);
+
+  const onTemplateClick = async (title: string, initialContent: string) => {
+    setIsCreating(true);
+    create({ title, initialContent })
+      .then((documentId) => {
+        toast.success("Document created successfully");
+        router.push(`/document/${documentId}`);
+      })
+      .catch((error) => {
+        toast.error("Error creating document:", error);
+      })
+      .finally(() => {
+        setIsCreating(false);
+        toast.dismiss();
+      });
+  };
 
   return (
-    <div className="bg-[#f1f3f4]">
+    <div className="bg-[#f1f3f4] pt-16">
       <div className="max-w-screen-xl mx-auto px-16 py-6 flex flex-col gap-y-4">
         <h3 className="font-medium">Start a new document</h3>
         <Carousel>
@@ -34,7 +57,7 @@ const TemplateGallery = () => {
                 >
                   <button
                     disabled={isCreating}
-                    onClick={() => {}}
+                    onClick={() => onTemplateClick(t.label, "")} // TODO: ADD INITIAL CONTENT
                     style={{
                       backgroundImage: `url(${t.imageUrl})`,
                       backgroundSize: "cover",
