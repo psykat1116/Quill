@@ -1,4 +1,5 @@
 "use server";
+import { nameToColor } from "@/lib/color";
 import { auth, clerkClient } from "@clerk/nextjs/server";
 
 export async function getUsers() {
@@ -14,6 +15,9 @@ export async function getUsers() {
     name:
       user.fullName || user.primaryEmailAddress?.emailAddress || "Anonymous",
     avatar: user.imageUrl,
+    color: nameToColor(
+      user.fullName || user.primaryEmailAddress?.emailAddress || "Anonymous"
+    ),
   }));
 
   return users;

@@ -19,6 +19,40 @@ export const metadata: Metadata = {
   title: "Quill | Seamless Writing & Real-Time Collaboration",
   description:
     "Quill is an advanced, AI-powered document editor designed for effortless writing, editing, and real-time collaboration. Whether you're drafting reports, brainstorming ideas, or co-writing with a team, Quill keeps everything fluid and organized. With intelligent formatting, seamless cloud sync, and distraction-free design, you can focus on what truly matters—your words. Write smarter, collaborate faster, and bring ideas to life with Quill. ✍️🚀",
+  applicationName: "Quill",
+  authors: {
+    name: "Saikat Samanta",
+    url: "https://portfolio-one-gilt-34.vercel.app/",
+  },
+  creator: "Saikat Samanta",
+  keywords: [
+    "Quill",
+    "Document Writer",
+    "Google Docs Clone",
+    "Liveblocks Application",
+    "covex application",
+    "document",
+    "document writer",
+    "tiptap editor",
+    "tiptap editor application",
+    "document generator",
+  ],
+  openGraph: {
+    title: "Quill | Seamless Writing & Real-Time Collaboration",
+    description:
+      "Quill is an advanced, AI-powered document editor designed for effortless writing, editing, and real-time collaboration. Whether you're drafting reports, brainstorming ideas, or co-writing with a team, Quill keeps everything fluid and organized. With intelligent formatting, seamless cloud sync, and distraction-free design, you can focus on what truly matters—your words. Write smarter, collaborate faster, and bring ideas to life with Quill. ✍️🚀",
+    url: "",
+    siteName: "Quill",
+    images: [
+      {
+        url: "",
+        width: 1200,
+        height: 630,
+        alt: "Quill - Document Writer",
+        type: "image/png",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

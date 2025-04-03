@@ -23,10 +23,21 @@ import { FontSizeExtension } from "../extension/font-size";
 import { LineHeightExtension } from "../extension/line-height";
 import Ruler from "./Ruler";
 import Threads from "./Threads";
+import { useStorage } from "@liveblocks/react";
+import { DEFAULT_MARGIN } from "@/constant";
 
-const Editor = () => {
+interface EditorProps {
+  initialContent?: string;
+}
+
+const Editor = ({ initialContent }: EditorProps) => {
   const { setEditor } = useEditorStore();
-  const Liveblocks = useLiveblocksExtension();
+  const leftMargin = useStorage((root) => root.leftMargin);
+  const rightMargin = useStorage((root) => root.rightMargin);
+  const Liveblocks = useLiveblocksExtension({
+    initialContent,
+    offlineSupport_experimental: true,
+  });
 
   const editor = useEditor({
     onCreate({ editor }) {
@@ -94,7 +105,7 @@ const Editor = () => {
       attributes: {
         class:
           "focus:outline-none print:border-0 bg-white border-[#c7c7c7] border flex flex-col min-h-[1054px] w-[816px] pt-10 pr-14 pb-10 cursor-text",
-        style: "padding-left: 56px; padding-right: 56px;",
+        style: `padding-left: ${leftMargin || DEFAULT_MARGIN}px; padding-right: ${rightMargin || DEFAULT_MARGIN}px;`,
       },
     },
     immediatelyRender: false,
@@ -105,7 +116,7 @@ const Editor = () => {
       <Ruler />
       <div className="min-w-max justify-center w-[816px] py-4 print:py-0 mx-auto print:w-full print:min-w-0">
         <EditorContent editor={editor} />
-        <Threads editor={editor}/>
+        <Threads editor={editor} />
       </div>
     </div>
   );

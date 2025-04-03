@@ -1,7 +1,5 @@
+import { AVATAR_SIZE } from "@/constant";
 import Image from "next/image";
-
-// TODO: Export to types file
-const AVATAR_SIZE = 36;
 
 interface AvatarProps {
   src: string;

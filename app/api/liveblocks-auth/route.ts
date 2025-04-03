@@ -2,6 +2,7 @@ import { Liveblocks } from "@liveblocks/node";
 import { ConvexHttpClient } from "convex/browser";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { api } from "@/convex/_generated/api";
+import { nameToColor } from "@/lib/color";
 
 const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 const liveblocks = new Liveblocks({
@@ -42,6 +43,9 @@ export async function POST(req: Request) {
       name:
         user.firstName || user.primaryEmailAddress?.emailAddress || "Anonymous",
       avatar: user.imageUrl,
+      color: nameToColor(
+        user.firstName || user.primaryEmailAddress?.emailAddress || "Anonymous"
+      ),
     },
   });
 

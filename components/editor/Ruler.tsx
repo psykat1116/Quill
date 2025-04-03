@@ -1,22 +1,23 @@
 import { useRef, useState } from "react";
 import Marker from "./Marker";
+import { useStorage, useMutation } from "@liveblocks/react";
+import { DEFAULT_MARGIN, MIN_GAP } from "@/constant";
 
 const markers = Array.from({ length: 83 }, (_, i) => i);
 
 const Ruler = () => {
-  const [leftMargin, setLeftMargin] = useState(56);
-  const [rightMargin, setRightMargin] = useState(56);
+  const leftMargin = useStorage((root) => root.leftMargin) || DEFAULT_MARGIN;
+  const rightMargin = useStorage((root) => root.rightMargin) || DEFAULT_MARGIN;
+  const setLeftMargin = useMutation(({ storage }, position: number) => {
+    storage.set("leftMargin", position);
+  }, []);
+  const setRightMargin = useMutation(({ storage }, position: number) => {
+    storage.set("rightMargin", position);
+  }, []);
+
+  const rulerRef = useRef<HTMLDivElement>(null);
   const [isDraggingLeft, setIsDraggingLeft] = useState(false);
   const [isDraggingRight, setIsDraggingRight] = useState(false);
-  const rulerRef = useRef<HTMLDivElement>(null);
-
-  const handleLeftMouseDown = () => {
-    setIsDraggingLeft(true);
-  };
-
-  const handleRightMouseDown = () => {
-    setIsDraggingRight(true);
-  };
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if ((isDraggingLeft || isDraggingRight) && rulerRef.current) {
@@ -28,11 +29,11 @@ const Ruler = () => {
         const rawPosition = Math.max(10, Math.min(relativeX, 816));
 
         if (isDraggingLeft) {
-          const maxLeftPosition = 816 - rightMargin - 100;
+          const maxLeftPosition = 816 - rightMargin - MIN_GAP;
           const newLeftPosition = Math.min(rawPosition, maxLeftPosition);
           setLeftMargin(newLeftPosition);
         } else if (isDraggingRight) {
-          const maxRightPosition = 816 - leftMargin - 100;
+          const maxRightPosition = 816 - leftMargin - MIN_GAP;
           const newRightPosition = Math.max(816 - rawPosition, 0);
           const contraintedRightPosition = Math.min(
             newRightPosition,
@@ -49,14 +50,6 @@ const Ruler = () => {
     setIsDraggingRight(false);
   };
 
-  const handleLeftDoubleClick = () => {
-    setLeftMargin(56);
-  };
-
-  const handleRightDoubleClick = () => {
-    setRightMargin(56);
-  };
-
   return (
     <div
       ref={rulerRef}
@@ -70,14 +63,14 @@ const Ruler = () => {
           position={leftMargin}
           isLeft
           isDragging={isDraggingLeft}
-          onMouseDown={handleLeftMouseDown}
-          onDoubleClick={handleLeftDoubleClick}
+          onMouseDown={() => setIsDraggingLeft(true)}
+          onDoubleClick={() => setLeftMargin(DEFAULT_MARGIN)}
         />
         <Marker
           position={rightMargin}
           isDragging={isDraggingRight}
-          onMouseDown={handleRightMouseDown}
-          onDoubleClick={handleRightDoubleClick}
+          onMouseDown={() => setIsDraggingRight(true)}
+          onDoubleClick={() => setRightMargin(DEFAULT_MARGIN)}
         />
         <div className="absolute inset-x-0 bottom-0 h-full">
           <div className="relative h-full w-[816px]">

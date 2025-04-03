@@ -11,7 +11,9 @@ import {
   MenubarSubTrigger,
   MenubarTrigger,
 } from "@/components/ui/menubar";
+import { api } from "@/convex/_generated/api";
 import { useEditorStore } from "@/store/useEditorStore";
+import { useMutation } from "convex/react";
 import {
   Bold,
   File,
@@ -30,10 +32,37 @@ import {
   Underline,
   Undo2,
 } from "lucide-react";
+import { useParams, useRouter } from "next/navigation";
 import { BsFilePdf } from "react-icons/bs";
+import { toast } from "sonner";
 
-const Menu = () => {
+import RenameDialog from "../modal/RenameDialog";
+import RemoveDialog from "../modal/RemoveDialog";
+import { Id } from "@/convex/_generated/dataModel";
+
+interface MenuProps {
+  title: string;
+}
+
+const Menu = ({ title }: MenuProps) => {
+  const router = useRouter();
+  const { documentId } = useParams<{ documentId: Id<"documents"> }>();
   const { editor } = useEditorStore();
+  const mutation = useMutation(api.documents.create);
+
+  const onNewDocument = () => {
+    mutation({
+      title: "Untitled Document",
+      initialContent: "",
+    })
+      .then((id) => {
+        toast.success("Document created successfully");
+        router.push(`/document/${id}`);
+      })
+      .catch(() => {
+        toast.error("Error creating document");
+      });
+  };
 
   const insertTable = ({ rows, cols }: { rows: number; cols: number }) => {
     editor
@@ -57,7 +86,7 @@ const Menu = () => {
     const blob = new Blob([JSON.stringify(json)], {
       type: "application/json",
     });
-    const filename = "document.json"; // TODO: Use Document Name
+    const filename = `${title || "Untitled"}.json`;
     onDownload(blob, filename);
   };
 
@@ -65,7 +94,7 @@ const Menu = () => {
     if (!editor) return;
     const html = editor.getHTML();
     const blob = new Blob([html], { type: "text/html" });
-    const filename = "document.html"; // TODO: Use Document Name
+    const filename = `${title || "Untitled"}.html`;
     onDownload(blob, filename);
   };
 
@@ -73,7 +102,7 @@ const Menu = () => {
     if (!editor) return;
     const content = editor.getText();
     const blob = new Blob([content], { type: "text/plain" });
-    const filename = "document.txt"; // TODO: Use Document Name
+    const filename = `${title || "Untitled"}.txt`;
     onDownload(blob, filename);
   };
 
@@ -109,19 +138,29 @@ const Menu = () => {
                 </MenubarItem>
               </MenubarSubContent>
             </MenubarSub>
-            <MenubarItem>
+            <MenubarItem onClick={onNewDocument}>
               <FilePlus className="size-4 mr-2" />
               New Document
             </MenubarItem>
             <MenubarSeparator />
-            <MenubarItem>
-              <FilePen className="size-4 mr-2" />
-              Rename
-            </MenubarItem>
-            <MenubarItem>
-              <Trash className="size-4 mr-2" />
-              Delete
-            </MenubarItem>
+            <RenameDialog title={title} documentId={documentId}>
+              <MenubarItem
+                onSelect={(e) => e.preventDefault()}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <FilePen className="size-4 mr-2" />
+                Rename
+              </MenubarItem>
+            </RenameDialog>
+            <RemoveDialog documentId={documentId}>
+              <MenubarItem
+                onSelect={(e) => e.preventDefault()}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <Trash className="size-4 mr-2" />
+                Delete
+              </MenubarItem>
+            </RemoveDialog>
             <MenubarSeparator />
             <MenubarItem onClick={() => window.print()}>
               <Printer className="size-4 mr-2" />

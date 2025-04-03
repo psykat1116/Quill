@@ -34,7 +34,6 @@ const FontSize = () => {
     const newSize = parseInt(fontSize) + 1;
     if (newSize < 100) {
       updateFontSize(newSize.toString());
-      // TODO: Show Toast Message
     }
   };
 
@@ -42,7 +41,6 @@ const FontSize = () => {
     const newSize = parseInt(fontSize) - 1;
     if (newSize > 10) {
       updateFontSize(newSize.toString());
-      // TODO: Show Toast Message
     }
   };
 

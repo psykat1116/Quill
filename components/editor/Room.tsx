@@ -11,13 +11,12 @@ import { getDocs } from "@/actions/getDocs";
 import { toast } from "sonner";
 import ScreenLoader from "../ScreenLoader";
 import { Id } from "@/convex/_generated/dataModel";
+import { DEFAULT_MARGIN } from "@/constant";
+import { User } from "@/types";
 
 interface RoomProps {
   children: ReactNode;
 }
-
-// TODO: Export to types file
-type User = { id: string; name: string; avatar: string };
 
 const Room = ({ children }: RoomProps) => {
   const [users, setUsers] = useState<User[]>([]);
@@ -76,7 +75,13 @@ const Room = ({ children }: RoomProps) => {
         }));
       }}
     >
-      <RoomProvider id={documentId}>
+      <RoomProvider
+        id={documentId}
+        initialStorage={{
+          leftMargin: DEFAULT_MARGIN,
+          rightMargin: DEFAULT_MARGIN,
+        }}
+      >
         <ClientSideSuspense
           fallback={<ScreenLoader label="Entering Room..." />}
         >
