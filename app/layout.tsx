@@ -47,8 +47,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "https://github.com/psykat1116/Quill/blob/master/public/Opengraph.png?raw=true",
-        width: 1200,
-        height: 630,
+        width: 1920,
+        height: 909,
         alt: "Quill | Seamless Writing & Real-Time Collaboration",
         type: "image/png",
       },
