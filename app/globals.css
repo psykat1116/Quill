@@ -165,7 +165,6 @@ html {
       align-items: flex-start;
       display: flex;
 
-
       > label {
         flex: 0 0 auto;
         margin-right: 0.5rem;
@@ -174,7 +173,7 @@ html {
 
       > div {
         flex: 1 1 auto;
-        margin-top: -0.35rem
+        margin-top: -0.35rem;
       }
     }
 
@@ -305,4 +304,32 @@ html {
       @apply underline;
     }
   }
+}
+
+/* For mobile */
+.floating-threads {
+  display: none;
+}
+
+/* For desktop */
+.anchored-threads {
+  display: block;
+  max-width: 300px;
+  width: 100%;
+  position: absolute;
+  right: 12px;
+}
+
+@media (max-width: 640px) {
+  .floating-threads {
+    display: block;
+  }
+
+  .anchored-threads {
+    display: none;
+  }
+}
+
+div[data-radix-popper-content-wrapper] {
+  z-index: 50 !important;
 }

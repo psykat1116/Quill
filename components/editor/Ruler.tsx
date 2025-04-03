@@ -19,12 +19,8 @@ const Ruler = () => {
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    console.log(leftMargin, rightMargin);
-
     if ((isDraggingLeft || isDraggingRight) && rulerRef.current) {
       const container = rulerRef.current.querySelector("#ruler-container");
-
-      console.log(container);
 
       if (container) {
         const containerRect = container.getBoundingClientRect();

@@ -2,6 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import DocInput from "./DocInput";
 import Menu from "./Menu";
+import Avatars from "./Avatars";
+import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
+import Inbox from "./Inbox";
 
 const Navbar = () => {
   return (
@@ -14,6 +17,17 @@ const Navbar = () => {
           <DocInput />
           <Menu />
         </div>
+      </div>
+      <div className="flex gap-3 items-center pl-6">
+        <Avatars />
+        <Inbox />
+        <OrganizationSwitcher
+          afterCreateOrganizationUrl="/"
+          afterLeaveOrganizationUrl="/"
+          afterSelectOrganizationUrl="/"
+          afterSelectPersonalUrl="/"
+        />
+        <UserButton />
       </div>
     </nav>
   );

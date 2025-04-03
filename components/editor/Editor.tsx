@@ -17,13 +17,16 @@ import { Color } from "@tiptap/extension-color";
 import Highlight from "@tiptap/extension-highlight";
 import Link from "@tiptap/extension-link";
 import TextAlign from "@tiptap/extension-text-align";
+import { useLiveblocksExtension } from "@liveblocks/react-tiptap";
 
-import { FontSizeExtension } from "./extension/font-size";
-import { LineHeightExtension } from "./extension/line-height";
+import { FontSizeExtension } from "../extension/font-size";
+import { LineHeightExtension } from "../extension/line-height";
 import Ruler from "./Ruler";
+import Threads from "./Threads";
 
 const Editor = () => {
   const { setEditor } = useEditorStore();
+  const Liveblocks = useLiveblocksExtension();
 
   const editor = useEditor({
     onCreate({ editor }) {
@@ -54,6 +57,7 @@ const Editor = () => {
       Color,
       Table,
       Image,
+      Liveblocks,
       TaskList,
       TableRow,
       TableCell,
@@ -62,7 +66,9 @@ const Editor = () => {
       TextAlign.configure({
         types: ["heading", "paragraph"],
       }),
-      StarterKit,
+      StarterKit.configure({
+        history: false,
+      }),
       FontFamily,
       TableHeader,
       ImageResize,
@@ -99,6 +105,7 @@ const Editor = () => {
       <Ruler />
       <div className="min-w-max justify-center w-[816px] py-4 print:py-0 mx-auto print:w-full print:min-w-0">
         <EditorContent editor={editor} />
+        <Threads editor={editor}/>
       </div>
     </div>
   );

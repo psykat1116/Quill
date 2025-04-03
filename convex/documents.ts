@@ -13,10 +13,13 @@ export const create = mutation({
       throw new ConvexError("User not authenticated");
     }
 
+    const orgId = (user.org_id as string) || undefined;
+
     const documentId = await ctx.db.insert("documents", {
       title: args.title || "Untitled",
       ownerId: user.subject,
       initialContent: args.initialContent,
+      organizationId: orgId,
     });
 
     return documentId;
@@ -34,12 +37,30 @@ export const get = query({
       throw new ConvexError("User not authenticated");
     }
 
+    const orgId = (user.org_id as string) || undefined;
+
+    if (search && orgId) {
+      return await ctx.db
+        .query("documents")
+        .withSearchIndex("search_title", (q) =>
+          q.search("title", search).eq("organizationId", orgId)
+        )
+        .paginate(paginationOpts);
+    }
+
     if (search) {
       return await ctx.db
         .query("documents")
         .withSearchIndex("search_title", (q) =>
           q.search("title", search).eq("ownerId", user.subject)
         )
+        .paginate(paginationOpts);
+    }
+
+    if (orgId) {
+      return await ctx.db
+        .query("documents")
+        .withIndex("by_organization_id", (q) => q.eq("organizationId", orgId))
         .paginate(paginationOpts);
     }
 
@@ -63,8 +84,8 @@ export const removeById = mutation({
       throw new ConvexError("Document not found");
     }
 
-    if (document.ownerId !== user.subject) {
-      throw new ConvexError("User not authorized to delete this document");
+    if (document.ownerId !== user.subject && user.org_role !== "admin") {
+      throw new ConvexError("Unauthorized to delete this document");
     }
 
     await ctx.db.delete(args.id);
@@ -86,8 +107,8 @@ export const updateById = mutation({
       throw new ConvexError("Document not found");
     }
 
-    if (document.ownerId !== user.subject) {
-      throw new ConvexError("User not authorized to delete this document");
+    if (document.ownerId !== user.subject && user.org_role !== "admin") {
+      throw new ConvexError("Unauthorized to update this document");
     }
 
     await ctx.db.patch(args.id, {
@@ -95,5 +116,36 @@ export const updateById = mutation({
     });
 
     return args.id;
+  },
+});
+
+export const getById = query({
+  args: { id: v.id("documents") },
+  handler: async (ctx, args) => {
+    return await ctx.db.get(args.id);
+  },
+});
+
+export const getByIds = query({
+  args: { ids: v.array(v.id("documents")) },
+  handler: async (ctx, args) => {
+    const documents = [];
+
+    for (const id of args.ids) {
+      const document = await ctx.db.get(id);
+      if (document) {
+        documents.push({
+          id: document._id,
+          name: document.title,
+        });
+      } else {
+        documents.push({
+          id,
+          name: "[Removed]",
+        });
+      }
+    }
+
+    return documents;
   },
 });

@@ -13,19 +13,19 @@ import {
   Underline,
   Undo2,
 } from "lucide-react";
-import ToolbarButton from "./tools/ToolbarButton";
+import ToolbarButton from "../tools/ToolbarButton";
 import { useEditorStore } from "@/store/useEditorStore";
-import { Separator } from "./ui/separator";
-import FontFamily from "./tools/FontFamily";
-import Heading from "./tools/Heading";
-import TextColor from "./tools/TextColor";
-import HighlightColor from "./tools/HighlightColor";
-import Anchor from "./tools/Anchor";
-import Photo from "./tools/Photo";
-import Align from "./tools/Align";
-import List from "./tools/List";
-import FontSize from "./tools/FontSize";
-import LineHeight from "./tools/LineHeight";
+import { Separator } from "../ui/separator";
+import FontFamily from "../tools/FontFamily";
+import Heading from "../tools/Heading";
+import TextColor from "../tools/TextColor";
+import HighlightColor from "../tools/HighlightColor";
+import Anchor from "../tools/Anchor";
+import Photo from "../tools/Photo";
+import Align from "../tools/Align";
+import List from "../tools/List";
+import FontSize from "../tools/FontSize";
+import LineHeight from "../tools/LineHeight";
 
 const Toolbar = () => {
   const { editor } = useEditorStore();
@@ -109,9 +109,9 @@ const Toolbar = () => {
         label: "Comment",
         icon: MessageSquarePlus,
         onClick: () => {
-          console.log("TODO: Comment");
+          editor?.chain().focus().addPendingComment().run();
         },
-        isActive: false, // TODO: Implement comment functionality
+        isActive: editor?.isActive("liveblocksCommentMark"),
       },
       {
         label: "List Todo",

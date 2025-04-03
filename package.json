@@ -10,6 +10,11 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^6.12.12",
+    "@liveblocks/client": "^2.22.2",
+    "@liveblocks/node": "^2.22.2",
+    "@liveblocks/react": "^2.22.2",
+    "@liveblocks/react-tiptap": "^2.22.2",
+    "@liveblocks/react-ui": "^2.22.2",
     "@radix-ui/react-alert-dialog": "^1.1.6",
     "@radix-ui/react-dialog": "^1.1.6",
     "@radix-ui/react-dropdown-menu": "^2.1.6",
