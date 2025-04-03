@@ -13,19 +13,20 @@ import {
   Underline,
   Undo2,
 } from "lucide-react";
-import ToolbarButton from "../tools/ToolbarButton";
+
+import List from "@/components/tools/List";
+import Align from "@/components/tools/Align";
+import Photo from "@/components/tools/Photo";
+import Anchor from "@/components/tools/Anchor";
+import Heading from "@/components/tools/Heading";
+import FontSize from "@/components/tools/FontSize";
+import TextColor from "@/components/tools/TextColor";
+import { Separator } from "@/components/ui/separator";
+import FontFamily from "@/components/tools/FontFamily";
+import LineHeight from "@/components/tools/LineHeight";
 import { useEditorStore } from "@/store/useEditorStore";
-import { Separator } from "../ui/separator";
-import FontFamily from "../tools/FontFamily";
-import Heading from "../tools/Heading";
-import TextColor from "../tools/TextColor";
-import HighlightColor from "../tools/HighlightColor";
-import Anchor from "../tools/Anchor";
-import Photo from "../tools/Photo";
-import Align from "../tools/Align";
-import List from "../tools/List";
-import FontSize from "../tools/FontSize";
-import LineHeight from "../tools/LineHeight";
+import ToolbarButton from "@/components/tools/ToolbarButton";
+import HighlightColor from "@/components/tools/HighlightColor";
 
 const Toolbar = () => {
   const { editor } = useEditorStore();

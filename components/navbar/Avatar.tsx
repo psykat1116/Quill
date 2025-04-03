@@ -1,5 +1,6 @@
-import { AVATAR_SIZE } from "@/constant";
 import Image from "next/image";
+
+import { AVATAR_SIZE } from "@/constant";
 
 interface AvatarProps {
   src: string;

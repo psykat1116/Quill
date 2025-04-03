@@ -1,6 +1,7 @@
-import Avatar from "./Avatar";
-import { Separator } from "../ui/separator";
 import { useOthers, useSelf } from "@liveblocks/react/suspense";
+
+import Avatar from "@/components/navbar/Avatar";
+import { Separator } from "@/components/ui/separator";
 
 const AvatarStack = () => {
   const users = useOthers();

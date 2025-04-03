@@ -1,21 +1,22 @@
-import { useEditorStore } from "@/store/useEditorStore";
 import { useState } from "react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
 import { ImageIcon, Search, Upload } from "lucide-react";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
+
 import {
   Dialog,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "../ui/dialog";
+} from "@/components/ui/dialog";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { useEditorStore } from "@/store/useEditorStore";
 
 const Photo = () => {
   const { editor } = useEditorStore();

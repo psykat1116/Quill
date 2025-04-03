@@ -1,8 +1,9 @@
 "use client";
 import { Bell } from "lucide-react";
 import { ClientSideSuspense } from "@liveblocks/react";
-import InboxMenu from "./InboxMenu";
+
 import { Button } from "@/components/ui/button";
+import InboxMenu from "@/components/navbar/InboxMenu";
 import { Separator } from "@/components/ui/separator";
 
 const Inbox = () => {

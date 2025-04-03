@@ -1,11 +1,12 @@
-import { useEditorStore } from "@/store/useEditorStore";
+import { AlignCenter, AlignJustify, AlignLeft, AlignRight } from "lucide-react";
+
+import { cn } from "@/lib/utils";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { AlignCenter, AlignJustify, AlignLeft, AlignRight } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { useEditorStore } from "@/store/useEditorStore";
 
 const Align = () => {
   const { editor } = useEditorStore();

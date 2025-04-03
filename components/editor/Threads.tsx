@@ -1,11 +1,12 @@
-import { useThreads, ClientSideSuspense } from "@liveblocks/react/suspense";
 import {
   AnchoredThreads,
   FloatingComposer,
   FloatingThreads,
 } from "@liveblocks/react-tiptap";
 import { Editor } from "@tiptap/react";
-import ScreenLoader from "../ScreenLoader";
+import { useThreads, ClientSideSuspense } from "@liveblocks/react/suspense";
+
+import ScreenLoader from "@/components/ScreenLoader";
 
 const Threads = ({ editor }: { editor: Editor | null }) => {
   const { threads } = useThreads({ query: { resolved: false } });

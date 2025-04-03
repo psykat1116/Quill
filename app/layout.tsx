@@ -2,11 +2,12 @@ import "./globals.css";
 import "@liveblocks/react-ui/styles.css";
 import "@liveblocks/react-tiptap/styles.css";
 
+import { Toaster } from "sonner";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+
 import { ConvexClientProvider } from "@/store/ConvexClientProvider";
-import { Toaster } from "sonner";
 
 const poppins = Poppins({
   subsets: ["latin", "latin-ext"],
@@ -41,14 +42,14 @@ export const metadata: Metadata = {
     title: "Quill | Seamless Writing & Real-Time Collaboration",
     description:
       "Quill is an advanced, AI-powered document editor designed for effortless writing, editing, and real-time collaboration. Whether you're drafting reports, brainstorming ideas, or co-writing with a team, Quill keeps everything fluid and organized. With intelligent formatting, seamless cloud sync, and distraction-free design, you can focus on what truly matters—your words. Write smarter, collaborate faster, and bring ideas to life with Quill. ✍️🚀",
-    url: "",
+    url: "https://quill-nu.vercel.app/",
     siteName: "Quill",
     images: [
       {
-        url: "",
+        url: "https://github.com/psykat1116/Quill/blob/master/public/Opengraph.png?raw=true",
         width: 1200,
         height: 630,
-        alt: "Quill - Document Writer",
+        alt: "Quill | Seamless Writing & Real-Time Collaboration",
         type: "image/png",
       },
     ],

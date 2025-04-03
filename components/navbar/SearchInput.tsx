@@ -1,12 +1,13 @@
 "use client";
 import { useRef, useState } from "react";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import { useSearch } from "@/hook/useSearch";
 import { Search, X } from "lucide-react";
 
+import { useSearch } from "@/hook/useSearch";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+
 const SearchInput = () => {
-  const [_, setSearch] = useSearch("search");
+  const [, setSearch] = useSearch("search");
   const [value, setValue] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -25,6 +26,7 @@ const SearchInput = () => {
     <div className="flex-1 flex items-center justify-center">
       <form onSubmit={handleSubmit} className="relative max-w-[720px] w-full">
         <Input
+          autoFocus
           ref={inputRef}
           placeholder="Search..."
           className="placeholder:text-neutral-800 px-8 md:px-11 w-full border-none bg-[#f0f4f8] rounded-sm h-[30px] md:h-[40px] focus-visible:ring-0 text-sm md:text-base"

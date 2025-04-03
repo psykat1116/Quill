@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
-import React from "react";
-import SearchInput from "./SearchInput";
+import Image from "next/image";
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
+
+import SearchInput from "@/components/navbar/SearchInput";
 
 const HomeNavbar = () => {
   return (

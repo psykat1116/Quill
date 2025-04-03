@@ -1,11 +1,12 @@
-import { useEditorStore } from "@/store/useEditorStore";
+import { ListIcon, ListOrdered } from "lucide-react";
+
+import { cn } from "@/lib/utils";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ListIcon, ListOrdered } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { useEditorStore } from "@/store/useEditorStore";
 
 const List = () => {
   const { editor } = useEditorStore();

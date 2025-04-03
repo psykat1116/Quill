@@ -1,13 +1,13 @@
-import React from "react";
+import { ExternalLink, FilePen, MoreVertical, Trash } from "lucide-react";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
 import { Id } from "@/convex/_generated/dataModel";
-import { Button } from "../ui/button";
-import { ExternalLink, FilePen, MoreVertical, Trash } from "lucide-react";
 import RemoveDialog from "@/components/modal/RemoveDialog";
 import RenameDialog from "@/components/modal/RenameDialog";
 

@@ -1,11 +1,12 @@
-import { useEditorStore } from "@/store/useEditorStore";
+import { Highlighter } from "lucide-react";
 import { type ColorResult, SketchPicker } from "react-color";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Highlighter } from "lucide-react";
+import { useEditorStore } from "@/store/useEditorStore";
 
 const HighlightColor = () => {
   const { editor } = useEditorStore();

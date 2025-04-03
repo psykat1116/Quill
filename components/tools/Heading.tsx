@@ -1,6 +1,5 @@
 import { ChevronDown } from "lucide-react";
 import { type Level } from "@tiptap/extension-heading";
-import { useEditorStore } from "@/store/useEditorStore";
 
 import { cn } from "@/lib/utils";
 import {
@@ -9,6 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useEditorStore } from "@/store/useEditorStore";
 
 const Heading = () => {
   const { editor } = useEditorStore();

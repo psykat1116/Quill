@@ -1,30 +1,30 @@
 "use client";
-import { useEditorStore } from "@/store/useEditorStore";
-import { useEditor, EditorContent } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
-import TaskItem from "@tiptap/extension-task-item";
-import TaskList from "@tiptap/extension-task-list";
-import Table from "@tiptap/extension-table";
-import TableCell from "@tiptap/extension-table-cell";
-import TableHeader from "@tiptap/extension-table-header";
-import TableRow from "@tiptap/extension-table-row";
-import Image from "@tiptap/extension-image";
-import Underline from "@tiptap/extension-underline";
-import ImageResize from "tiptap-extension-resize-image";
-import FontFamily from "@tiptap/extension-font-family";
-import TextStyle from "@tiptap/extension-text-style";
-import { Color } from "@tiptap/extension-color";
-import Highlight from "@tiptap/extension-highlight";
 import Link from "@tiptap/extension-link";
+import Table from "@tiptap/extension-table";
+import Image from "@tiptap/extension-image";
+import StarterKit from "@tiptap/starter-kit";
+import { useStorage } from "@liveblocks/react";
+import { Color } from "@tiptap/extension-color";
+import TaskItem from "@tiptap/extension-task-item";
+import TableRow from "@tiptap/extension-table-row";
+import TaskList from "@tiptap/extension-task-list";
+import Highlight from "@tiptap/extension-highlight";
+import Underline from "@tiptap/extension-underline";
 import TextAlign from "@tiptap/extension-text-align";
+import TableCell from "@tiptap/extension-table-cell";
+import TextStyle from "@tiptap/extension-text-style";
+import FontFamily from "@tiptap/extension-font-family";
+import ImageResize from "tiptap-extension-resize-image";
+import TableHeader from "@tiptap/extension-table-header";
+import { useEditor, EditorContent } from "@tiptap/react";
 import { useLiveblocksExtension } from "@liveblocks/react-tiptap";
 
-import { FontSizeExtension } from "../extension/font-size";
-import { LineHeightExtension } from "../extension/line-height";
-import Ruler from "./Ruler";
-import Threads from "./Threads";
-import { useStorage } from "@liveblocks/react";
 import { DEFAULT_MARGIN } from "@/constant";
+import Ruler from "@/components/editor/Ruler";
+import Threads from "@/components/editor/Threads";
+import { useEditorStore } from "@/store/useEditorStore";
+import { FontSizeExtension } from "@/components/extension/font-size";
+import { LineHeightExtension } from "@/components/extension/line-height";
 
 interface EditorProps {
   initialContent?: string;
@@ -40,6 +40,7 @@ const Editor = ({ initialContent }: EditorProps) => {
   });
 
   const editor = useEditor({
+    autofocus: true,
     onCreate({ editor }) {
       setEditor(editor);
     },

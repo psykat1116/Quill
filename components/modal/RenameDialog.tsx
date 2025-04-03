@@ -1,5 +1,8 @@
 "use client";
-import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+import { useState } from "react";
+import { useMutation } from "convex/react";
+
 import {
   Dialog,
   DialogTrigger,
@@ -12,10 +15,8 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { api } from "@/convex/_generated/api";
+import { Button } from "@/components/ui/button";
 import { Id } from "@/convex/_generated/dataModel";
-import { useMutation } from "convex/react";
-import { useState } from "react";
-import { toast } from "sonner";
 
 interface RenameDialogProps {
   title: string;

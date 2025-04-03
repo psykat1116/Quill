@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
-import Marker from "./Marker";
 import { useStorage, useMutation } from "@liveblocks/react";
+
+import Marker from "@/components/editor/Marker";
 import { DEFAULT_MARGIN, MIN_GAP } from "@/constant";
 
 const markers = Array.from({ length: 83 }, (_, i) => i);

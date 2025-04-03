@@ -1,20 +1,5 @@
 "use client";
 import {
-  Menubar,
-  MenubarContent,
-  MenubarItem,
-  MenubarMenu,
-  MenubarSeparator,
-  MenubarShortcut,
-  MenubarSub,
-  MenubarSubContent,
-  MenubarSubTrigger,
-  MenubarTrigger,
-} from "@/components/ui/menubar";
-import { api } from "@/convex/_generated/api";
-import { useEditorStore } from "@/store/useEditorStore";
-import { useMutation } from "convex/react";
-import {
   Bold,
   File,
   FileJson,
@@ -32,13 +17,28 @@ import {
   Underline,
   Undo2,
 } from "lucide-react";
-import { useParams, useRouter } from "next/navigation";
-import { BsFilePdf } from "react-icons/bs";
 import { toast } from "sonner";
+import { useMutation } from "convex/react";
+import { BsFilePdf } from "react-icons/bs";
+import { useParams, useRouter } from "next/navigation";
 
-import RenameDialog from "../modal/RenameDialog";
-import RemoveDialog from "../modal/RemoveDialog";
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarSub,
+  MenubarSubContent,
+  MenubarSubTrigger,
+  MenubarTrigger,
+} from "@/components/ui/menubar";
+import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
+import { useEditorStore } from "@/store/useEditorStore";
+import RenameDialog from "@/components/modal/RenameDialog";
+import RemoveDialog from "@/components/modal/RemoveDialog";
 
 interface MenuProps {
   title: string;

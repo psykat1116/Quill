@@ -1,10 +1,11 @@
-import { useEditorStore } from "@/store/useEditorStore";
 import { type ColorResult, SketchPicker } from "react-color";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useEditorStore } from "@/store/useEditorStore";
 
 const TextColor = () => {
   const { editor } = useEditorStore();

@@ -1,13 +1,14 @@
-import { useEditorStore } from "@/store/useEditorStore";
 import { useState } from "react";
+import { Link2 } from "lucide-react";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import { Link2 } from "lucide-react";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { useEditorStore } from "@/store/useEditorStore";
 
 const Anchor = () => {
   const { editor } = useEditorStore();

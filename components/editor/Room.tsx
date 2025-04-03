@@ -1,18 +1,19 @@
 "use client";
-import { ReactNode, useEffect, useMemo, useState } from "react";
+import { toast } from "sonner";
 import {
   LiveblocksProvider,
   RoomProvider,
   ClientSideSuspense,
 } from "@liveblocks/react/suspense";
 import { useParams } from "next/navigation";
-import { getUsers } from "@/actions/getUsers";
-import { getDocs } from "@/actions/getDocs";
-import { toast } from "sonner";
-import ScreenLoader from "../ScreenLoader";
 import { Id } from "@/convex/_generated/dataModel";
-import { DEFAULT_MARGIN } from "@/constant";
+import { ReactNode, useEffect, useMemo, useState } from "react";
+
 import { User } from "@/types";
+import { getDocs } from "@/actions/getDocs";
+import { DEFAULT_MARGIN } from "@/constant";
+import { getUsers } from "@/actions/getUsers";
+import ScreenLoader from "@/components/ScreenLoader";
 
 interface RoomProps {
   children: ReactNode;

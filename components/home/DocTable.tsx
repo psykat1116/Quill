@@ -1,6 +1,5 @@
-import { Doc } from "@/convex/_generated/dataModel";
 import { PaginationStatus } from "convex/react";
-import Loading from "../Loading";
+
 import {
   Table,
   TableBody,
@@ -8,9 +7,11 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../ui/table";
-import DocRow from "./DocRow";
-import { Button } from "../ui/button";
+} from "@/components/ui/table";
+import Loading from "@/components/Loading";
+import DocRow from "@/components/home/DocRow";
+import { Button } from "@/components/ui/button";
+import { Doc } from "@/convex/_generated/dataModel";
 
 interface DocTableProps {
   documents: Doc<"documents">[];

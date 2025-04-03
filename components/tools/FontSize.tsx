@@ -1,6 +1,7 @@
-import { useEditorStore } from "@/store/useEditorStore";
 import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
+
+import { useEditorStore } from "@/store/useEditorStore";
 
 const FontSize = () => {
   const { editor } = useEditorStore();

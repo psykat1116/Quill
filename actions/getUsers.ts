@@ -1,6 +1,7 @@
 "use server";
-import { nameToColor } from "@/lib/color";
 import { auth, clerkClient } from "@clerk/nextjs/server";
+
+import { nameToColor } from "@/lib/color";
 
 export async function getUsers() {
   const { sessionClaims } = await auth();
